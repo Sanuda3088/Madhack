@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "675243542398",
+    "project_id": "madhack-jobapp",
+    "storage_bucket": "madhack-jobapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675243542398:android:ca0f945c6af158b225952f",
+        "android_client_info": {
+          "package_name": "com.example.jobfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675243542398-7skkv08cs2e16nmlbojtegb02jvc5eh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUvJYq9Op0YX-FBvFrMhsXpedxNcTC5mQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675243542398-7skkv08cs2e16nmlbojtegb02jvc5eh4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
