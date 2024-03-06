@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'components/drawerview.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -15,26 +17,55 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text("Shanka Visal Amarasekara"),
+              accountEmail: Text("shankavisal@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://lh3.googleusercontent.com/a/ACg8ocJ13rhrBpbk1rPNom7VDhUg-8I_SUTQ2UtTGhomswUHG-U=s360-c-no"),
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey
+              ),
+            ),
+            // DrawerHeader(
+            //     child: CircleAvatar(
+            //       backgroundImage: NetworkImage(
+            //           "https://lh3.googleusercontent.com/a/ACg8ocJ13rhrBpbk1rPNom7VDhUg-8I_SUTQ2UtTGhomswUHG-U=s360-c-no"),
+            //     ),
+            //   decoration: BoxDecoration(
+            //       color: Colors.blueGrey
+            //   ),
+            // ),
+            drawermenu()
+          ],
+        ),
+      ),
       body: Container(
         padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
         color: Colors.white,
         child: ListView(
           children: [
-            const Row(
-              children: [
-                Icon(
-                  Icons.menu,
-                  size: 35,
-                ),
-                SizedBox(
-                  width: 300,
-                ),
-                Icon(
-                  Icons.settings,
-                  size: 35,
-                ),
-              ],
-            ),
+            // const Row(
+            //   children: [
+            //     Icon(
+            //       Icons.menu,
+            //       size: 35,
+            //     ),
+            //     SizedBox(
+            //       width: 300,
+            //     ),
+            //     Icon(
+            //       Icons.settings,
+            //       size: 35,
+            //     ),
+            //   ],
+            // ),
             // Search Bar
             Padding(
               padding: const EdgeInsets.only(top: 25, bottom: 35),
