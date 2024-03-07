@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class SliderPage extends StatelessWidget {
@@ -23,15 +21,17 @@ class SliderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 230, 229, 225),
+      height: MediaQuery.of(context).size.height * 0.1,
+      width: MediaQuery.of(context).size.width * 0.9,
+      decoration: const BoxDecoration(
+        color: const Color.fromARGB(255, 230, 229, 225),
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(20),
             topLeft: Radius.circular(10),
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(10)),
       ),
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
           Row(
@@ -47,17 +47,21 @@ class SliderPage extends StatelessWidget {
               const SizedBox(
                 width: 200,
               ),
-              IconButton(
-                onPressed: () {},
-                icon: iconBookmark,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: iconBookmark,
+                  iconSize: 40,
+                ),
               ),
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(right: 160, top: 30),
+            padding: const EdgeInsets.only(right: 160, top: 30),
             child: Text(
               jobRole,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 24),
@@ -71,7 +75,7 @@ class SliderPage extends StatelessWidget {
                   TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 19),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
           Row(
@@ -81,20 +85,20 @@ class SliderPage extends StatelessWidget {
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Text(
                   tag,
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 160,
               ),
               Row(
                 children: [
                   Text(
                     "\$$salary/",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 24),

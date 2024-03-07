@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -118,17 +120,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         imagePath: "assets/ui-ux.png",
                         iconBookmark: Icon(
                           Icons.bookmark,
-                          size: 40,
                         ),
                         jobRole: "UI/UX Designer",
                         address: "CodeX Labs - Colombo , Sri Lanka.",
                         salary: "9K",
                         tag: "Remote"),
+                    SizedBox(
+                      width: 30,
+                    ),
                     SliderPage(
                         imagePath: "assets/ui-ux.png",
                         iconBookmark: Icon(
                           Icons.bookmark,
-                          size: 40,
                         ),
                         jobRole: "Web Developer",
                         address: "CodeX Labs - Colombo , Sri Lanka.",
@@ -137,6 +140,75 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+
+              Expanded(
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 198, 188, 188),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "Interaction Designer",
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 198, 188, 188),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "Technical Lead",
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 198, 188, 188),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "Software Engineer",
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 198, 188, 188),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "Data Scientist",
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Text(
+                "Recomended for you",
+                style: TextStyle(fontSize: 26, color: Colors.black),
+              )
 
               // Column(
               //   //mainAxisAlignment: MainAxisAlignment.start,
