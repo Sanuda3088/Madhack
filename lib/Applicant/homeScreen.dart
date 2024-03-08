@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:jobfinder/Applicant/components/slider.dart';
 
 import 'components/drawerview.dart';
 
@@ -47,7 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+        padding: const EdgeInsets.only(
+          top: 40,
+          left: 20,
+          right: 20,
+        ),
         color: Colors.white,
         child: ListView(
           children: [
@@ -128,44 +135,170 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const Text(
-              "Most Popular",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+            const Padding(
+              padding: EdgeInsets.only(right: 240),
+              child: Text(
+                "Most Popular",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+              ),
             ),
-            SizedBox(
-              height: 1,
+            const SizedBox(
+              height: 10,
             ),
-            Container(
-              child: Column(
+            const SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
                 children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        "assets/ui-ux.png",
-                        width: 70,
-                        height: 70,
+                  SliderPage(
+                      imagePath: "assets/ui-ux.png",
+                      iconBookmark: Icon(
+                        Icons.bookmark,
                       ),
-                      SizedBox(
-                        width: 200,
+                      jobRole: "UI/UX Designer",
+                      address: "CodeX Labs - Colombo , Sri Lanka.",
+                      salary: "9K",
+                      tag: "Remote"),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  SliderPage(
+                      imagePath: "assets/ui-ux.png",
+                      iconBookmark: Icon(
+                        Icons.bookmark,
                       ),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.bookmark,
-                            size: 40,
-                          )),
-                      // InkWell(
-                      //   child: Image.asset("assets/pngwing.com (5).png"),
-                      //   onTap: () {},
-                      // )
-                    ],
-                  )
+                      jobRole: "Web Developer",
+                      address: "CodeX Labs - Colombo , Sri Lanka.",
+                      salary: "8K",
+                      tag: "Full Time"),
                 ],
               ),
-            )
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: 40,
+                    width: 250,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 198, 188, 188),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "Interaction Designer",
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(255, 198, 188, 188),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      "Technical Lead",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(255, 198, 188, 188),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      "Software Engineer",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(255, 198, 188, 188),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      "Data Scientist",
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(right: 180, bottom: 20),
+              child: Text(
+                "Recomended for you",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            const Column(
+              children: [
+                SliderPage(
+                    imagePath: "assets/ui-ux.png",
+                    iconBookmark: Icon(
+                      Icons.bookmark,
+                    ),
+                    jobRole: "UI/UX Designer",
+                    address: "CodeX Labs - Colombo , Sri Lanka.",
+                    salary: "9K",
+                    tag: "Remote"),
+                SizedBox(
+                  height: 10,
+                ),
+                SliderPage(
+                    imagePath: "assets/ui-ux.png",
+                    iconBookmark: Icon(
+                      Icons.bookmark,
+                    ),
+                    jobRole: "Web Developer",
+                    address: "CodeX Labs - Colombo , Sri Lanka.",
+                    salary: "8K",
+                    tag: "Full Time"),
+                SizedBox(
+                  height: 10,
+                ),
+                // SliderPage(
+                //     imagePath: "assets/ui-ux.png",
+                //     iconBookmark: Icon(
+                //       Icons.bookmark,
+                //     ),
+                //     jobRole: "Senior Creative Designer",
+                //     address: "CodeX Labs - Colombo , Sri Lanka.",
+                //     salary: "8K",
+                //     tag: "Full Time"),
+              ],
+            ),
           ],
         ),
       ),
