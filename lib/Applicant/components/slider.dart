@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobfinder/main.dart';
 
 class SliderPage extends StatelessWidget {
   final String imagePath;
@@ -21,7 +22,7 @@ class SliderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.1,
+      height: MediaQuery.of(context).size.height * 0.35,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: const BoxDecoration(
         color: const Color.fromARGB(255, 230, 229, 225),
