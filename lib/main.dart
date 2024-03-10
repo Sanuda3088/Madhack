@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:jobfinder/Applicant/homeScreen.dart';
 import 'package:jobfinder/Controllers/firebase_options.dart';
-import 'package:jobfinder/Controllers/splashscreen.dart';
+import 'package:jobfinder/Employer/loginPage.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,13 +19,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 1, 20, 159)),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const LoginPage(),
     );
   }
 }
