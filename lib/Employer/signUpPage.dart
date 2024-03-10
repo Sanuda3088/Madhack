@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Employer/homepage.dart';
 import 'package:jobfinder/globals.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -121,7 +122,11 @@ class _SignUpPageState extends State<SignUpPage> {
             child: _errorMessage(),
           ),
           ElevatedButton(
-            onPressed: () {} /* => signInWithEmailAndPassword(context)*/,
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const EmployerHomePage();
+              }));
+            } /* => signInWithEmailAndPassword(context)*/,
             style: ElevatedButton.styleFrom(
               foregroundColor: const Color.fromARGB(255, 243, 242, 234),
               backgroundColor: const Color.fromARGB(255, 10, 4, 70),

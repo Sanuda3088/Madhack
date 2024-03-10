@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Employer/homepage.dart';
 import 'package:jobfinder/globals.dart';
 
 class LoginPage extends StatefulWidget {
@@ -26,7 +27,10 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Text("Welcome Back!",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+              const Text(
+                "Welcome Back!",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: LoginForm(),
@@ -73,10 +77,9 @@ class _LoginPageState extends State<LoginPage> {
               return null;
             },
             decoration: textFieldDecoration(
-              labelText: 'Email', 
-              hintText: 'Enter your email',
-              prefixIcon: const Icon(Icons.email)
-              ),
+                labelText: 'Email',
+                hintText: 'Enter your email',
+                prefixIcon: const Icon(Icons.email)),
           ),
           const SizedBox(height: 15),
           //password field
@@ -96,17 +99,20 @@ class _LoginPageState extends State<LoginPage> {
             },
             obscureText: true,
             decoration: textFieldDecoration(
-              labelText: 'Password', 
-              hintText: 'Enter your password', 
-              prefixIcon: const Icon(Icons.lock_open)
-            ),
+                labelText: 'Password',
+                hintText: 'Enter your password',
+                prefixIcon: const Icon(Icons.lock_open)),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: _errorMessage(),
           ),
           ElevatedButton(
-            onPressed: () {} /* => signInWithEmailAndPassword(context)*/,
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const EmployerHomePage();
+              }));
+            } /* => signInWithEmailAndPassword(context)*/,
             style: ElevatedButton.styleFrom(
               foregroundColor: const Color.fromARGB(255, 243, 242, 234),
               backgroundColor: const Color.fromARGB(255, 10, 4, 70),
@@ -114,7 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                 top: 20,
                 bottom: 20,
                 left: 40,
-                right: 40,),
+                right: 40,
+              ),
               textStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -131,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
             child: const FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
-                'Login',   
+                'Login',
               ),
             ),
           ),
@@ -209,5 +216,4 @@ class _LoginPageState extends State<LoginPage> {
   Widget _errorMessage() {
     return Text("errorMessage == '' ? '' : 'Humm ? $errorMessage");
   }
-
 }
