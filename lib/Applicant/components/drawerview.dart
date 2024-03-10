@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'Add Eductaion.dart';
 import 'Add Work Experience.dart';
-import 'MyGlobals.dart';
 import 'user info.dart';
 
 class drawermenu extends StatefulWidget {
