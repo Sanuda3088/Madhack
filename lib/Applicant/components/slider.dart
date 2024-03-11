@@ -1,6 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Applicant/JobRole/uiDesigner.dart';
+import 'package:jobfinder/Applicant/JobRole/webDeveloper.dart';
+import 'package:jobfinder/Applicant/savedJobs.dart';
 import 'package:jobfinder/main.dart';
 
 class SliderPage extends StatelessWidget {
@@ -10,8 +11,6 @@ class SliderPage extends StatelessWidget {
   final String address;
   final String salary;
   final String tag;
-  final VoidCallback? OnIconTap;
-  final VoidCallback? OnContainerTap;
 
   const SliderPage({
     super.key,
@@ -21,8 +20,6 @@ class SliderPage extends StatelessWidget {
     required this.address,
     required this.salary,
     required this.tag,
-    required this.OnContainerTap,
-    required this.OnIconTap,
   });
 
   @override
@@ -50,7 +47,17 @@ class SliderPage extends StatelessWidget {
                   height: 70,
                 ),
                 onTap: () {
-                  OnContainerTap;
+                  if (jobRole == "UI/UX Designer") {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UiDesigner()));
+                  } else if (jobRole == "Web Developer") {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const WebDeveloper()));
+                  }
                 },
               ),
               const SizedBox(
@@ -60,7 +67,10 @@ class SliderPage extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 20),
                 child: IconButton(
                   onPressed: () {
-                    OnIconTap;
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SavedJobs()));
                   },
                   icon: iconBookmark,
                   iconSize: 40,
@@ -70,7 +80,17 @@ class SliderPage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              OnContainerTap;
+              if (jobRole == "UI/UX Designer") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UiDesigner()));
+              } else if (jobRole == "Web Developer") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WebDeveloper()));
+              }
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 160, top: 30),
@@ -85,7 +105,17 @@ class SliderPage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              OnContainerTap;
+              if (jobRole == "UI/UX Designer") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UiDesigner()));
+              } else if (jobRole == "Web Developer") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WebDeveloper()));
+              }
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 28),
@@ -101,7 +131,17 @@ class SliderPage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              OnContainerTap;
+              if (jobRole == "UI/UX Designer") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UiDesigner()));
+              } else if (jobRole == "Web Developer") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WebDeveloper()));
+              }
             },
             child: Row(
               children: [
