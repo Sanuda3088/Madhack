@@ -1,22 +1,52 @@
 import 'dart:ffi';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Controllers/auth.dart';
 import 'package:jobfinder/Employer/homepage.dart';
+import 'package:jobfinder/Employer/loginPage.dart';
 import 'package:jobfinder/globals.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class EMPSignUpPage extends StatefulWidget {
+  const EMPSignUpPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<EMPSignUpPage> createState() => _EMPSignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _EMPSignUpPageState extends State<EMPSignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   String? errorMessage = '';
   late double width;
   late double height;
+
+  Future createUserWithEmailAndPassword(BuildContext context) async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      // Get the currently signed-in user
+      User? user = FirebaseAuth.instance.currentUser;
+
+      // Update the user's display name
+      await user?.updateDisplayName(_nameController.text);
+
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const EmployerHomePage()));
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
+  Widget _errorMessage() {
+    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +57,13 @@ class _SignUpPageState extends State<SignUpPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Text("Create an Account",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+              const Text(
+                "Create an Account",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
               Padding(
                 padding: const EdgeInsets.all(20),
-                child: LoginForm(),
+                child: loginForm(),
               ),
             ],
           ),
@@ -39,7 +72,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget LoginForm() {
+  Widget loginForm() {
     return Form(
       child: Column(
         children: [
@@ -58,22 +91,21 @@ class _SignUpPageState extends State<SignUpPage> {
             fit: BoxFit.contain,
           ),*/
           TextFormField(
-          controller: _nameController,
-          validator: (String? value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your name';
-            }
-            return null;
-          },
-          decoration: textFieldDecoration(
-            labelText: 'Name', 
-            hintText: 'Enter your Name', 
-            prefixIcon: const Icon(Icons.account_circle)
+            controller: _nameController,
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your name';
+              }
+              return null;
+            },
+            decoration: textFieldDecoration(
+                labelText: 'Name',
+                hintText: 'Enter your Name',
+                prefixIcon: const Icon(Icons.account_circle)),
           ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
+          const SizedBox(
+            height: 15,
+          ),
           // email Textfield
           TextFormField(
             controller: _emailController,
@@ -87,12 +119,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
               return null;
             },
-            decoration: 
-            textFieldDecoration(
-              labelText: 'Email', 
-              hintText: 'Enter your email',
-              prefixIcon: const Icon(Icons.email)
-              ),
+            decoration: textFieldDecoration(
+                labelText: 'Email',
+                hintText: 'Enter your email',
+                prefixIcon: const Icon(Icons.email)),
           ),
           const SizedBox(height: 15),
           //password field
@@ -112,57 +142,29 @@ class _SignUpPageState extends State<SignUpPage> {
             },
             obscureText: true,
             decoration: textFieldDecoration(
-              labelText: 'Password', 
-              hintText: 'Enter your password', 
-              prefixIcon: const Icon(Icons.lock_open)
-            ),
+                labelText: 'Password',
+                hintText: 'Enter your password',
+                prefixIcon: const Icon(Icons.lock_open)),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: _errorMessage(),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const EmployerHomePage();
-              }));
-            } /* => signInWithEmailAndPassword(context)*/,
-            style: ElevatedButton.styleFrom(
-              foregroundColor: const Color.fromARGB(255, 243, 242, 234),
-              backgroundColor: const Color.fromARGB(255, 10, 4, 70),
-              padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 20,
-                left: 40,
-                right: 40,),
-              textStyle: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-              elevation: 5,
-              side: const BorderSide(
-                color: Color.fromARGB(255, 249, 252, 251),
-                width: 4,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            child: const FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                'Sign Up',   
-              ),
-            ),
-          ),
+          elevatedButton(
+              text: 'Sign Up',
+              onPressed: () {
+                createUserWithEmailAndPassword(context);
+              }),
           const SizedBox(height: 8.0),
           TextButton(
-            onPressed:
-                () {} /*=> Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const UserSignUpPage()))*/
-            ,
+            onPressed: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => const EMPLoginPage()),
+              );
+            },
             child: const Text(
-              'Don\'t have an account? Sign Up',
+              'Have an account? Login here',
               style: TextStyle(
                 fontSize: 15,
                 color: Color.fromARGB(255, 10, 4, 70),
@@ -170,19 +172,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
           ),
-          const SizedBox(height: 1.0),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'Forgot Password?',
-              style: TextStyle(
-                fontSize: 15,
-                color: Color.fromARGB(255, 10, 4, 70),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          const SizedBox(height: 1.0),
+
           /*Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -225,9 +215,4 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
-
-  Widget _errorMessage() {
-    return Text("errorMessage == '' ? '' : 'Humm ? $errorMessage");
-  }
-
 }

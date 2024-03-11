@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jobfinder/Applicant/components/drawerview.dart';
+import 'package:jobfinder/Employer/components/recentjobposts.dart';
 import 'package:jobfinder/globals.dart';
 
 class EmployerHomePage extends StatefulWidget {
@@ -73,11 +74,10 @@ class _EmployerHomePageState extends State<EmployerHomePage> {
         child: Center(
           child: Padding(
             padding: EdgeInsets.only(
-              left: height * 0.025,
-              right: height * 0.025,
+              left: width * 0.025,
+              right: width * 0.025,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
                   height: height * 0.25,
@@ -128,6 +128,34 @@ class _EmployerHomePageState extends State<EmployerHomePage> {
                   ),
                 ),
                 const Text('job post content goes here'),
+                const Column(
+                  children: [
+                    RecentJobPosts(
+                      imagePath: 'assets/ui-ux.png',
+                      jobRole: "Ui/UX",
+                      address: 'Gampaha',
+                      salary: '10',
+                      tag: 'tag',
+                    ),
+                    SizedBox(height: 10,),
+                    RecentJobPosts(
+                  imagePath: 'assets/ui-ux.png',
+                  jobRole: "Ui/UX",
+                  address: 'Gampaha',
+                  salary: '10',
+                  tag: 'tag',
+                ),
+                SizedBox(height: 10,),
+                RecentJobPosts(
+                  imagePath: 'assets/ui-ux.png',
+                  jobRole: "Ui/UX",
+                  address: 'Gampaha',
+                  salary: '10',
+                  tag: 'tag',
+                ),
+                  ],
+                ),
+                
               ],
             ),
           ),
