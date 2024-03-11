@@ -1,22 +1,43 @@
 import 'dart:ffi';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Controllers/auth.dart';
 import 'package:jobfinder/Employer/homepage.dart';
+import 'package:jobfinder/Employer/signUpPage.dart';
 import 'package:jobfinder/globals.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class EMPLoginPage extends StatefulWidget {
+  const EMPLoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<EMPLoginPage> createState() => _EMPLoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _EMPLoginPageState extends State<EMPLoginPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   String? errorMessage = '';
   late double width;
   late double height;
+
+  Future signInWithEmailAndPassword(BuildContext context) async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+          email: _emailController.text, password: _passwordController.text);
+
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const EmployerHomePage()));
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
+  Widget _errorMessage() {
+    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
-                child: LoginForm(),
+                child: loginForm(),
               ),
             ],
           ),
@@ -42,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget LoginForm() {
+  Widget loginForm() {
     return Form(
       child: Column(
         children: [
@@ -107,7 +128,12 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.all(10.0),
             child: _errorMessage(),
           ),
-          ElevatedButton(
+          elevatedButton(
+              text: 'Login',
+              onPressed: () {
+                signInWithEmailAndPassword(context);
+              }),
+          /*ElevatedButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const EmployerHomePage();
@@ -142,10 +168,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
+          */
           const SizedBox(height: 8.0),
           TextButton(
-            onPressed:
-                () {} /*=> Navigator.of(context).push(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => const EMPSignUpPage())
+              );
+            } /*=> Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const UserSignUpPage()))*/
             ,
             child: const Text(
@@ -211,9 +242,5 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
-  }
-
-  Widget _errorMessage() {
-    return Text("errorMessage == '' ? '' : 'Humm ? $errorMessage");
   }
 }

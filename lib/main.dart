@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jobfinder/Controllers/firebase_options.dart';
+import 'package:jobfinder/Controllers/userdividingpage.dart';
 import 'package:jobfinder/Employer/loginPage.dart';
 
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 1, 20, 159)),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: const UserDividingPage(),
     );
   }
 }
