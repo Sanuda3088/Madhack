@@ -34,6 +34,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Applicant/applyjob.dart';
 import 'package:jobfinder/Applicant/homeScreen.dart';
 import 'package:jobfinder/Applicant/savedJobs.dart';
 
@@ -287,7 +288,15 @@ class UiDesigner extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 100, right: 100),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ApplyJob(
+                                  address: "CodeX Labs - Colombo , Sri Lanka.",
+                                  imagePath: "assets/ui-ux.png",
+                                  jobRole: "UI/UX Designer")));
+                    },
                     child: const Text(
                       "Apply Now",
                       style: TextStyle(

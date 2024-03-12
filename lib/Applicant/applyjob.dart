@@ -127,9 +127,9 @@ class ApplyJob extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: const Text(
+            const Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
                 "Message",
                 style: TextStyle(
                   color: Colors.black,
@@ -140,23 +140,50 @@ class ApplyJob extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: Container(
-                height: 300,
-
-                //padding: EdgeInsets.only(top: 250),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  color: Colors.black,
-                )),
-                child: const TextField(
-                  //scrollPadding: EdgeInsets.only(bottom: 300),
-                  decoration: InputDecoration(
-                      hintText: "Enter your text Here",
-                      hintStyle:
-                          //TextStyle(textBaseline: TextBaseline.alphabetic)),
+              child: TextField(
+                textAlignVertical: TextAlignVertical.top,
+                decoration: InputDecoration(
+                    hintText: "Enter your text Here",
+                    hintStyle: TextStyle(
+                      fontSize: 18,
+                    ),
+                    fillColor: const Color.fromARGB(255, 213, 211, 205),
+                    filled: true,
+                    contentPadding: EdgeInsets.only(
+                      bottom: 200,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(7),
+                        borderSide: const BorderSide(
+                          color: Colors.black,
+                          width: 1,
+                        ))),
+              ),
+            ),
+            SizedBox(
+              height: 140,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 60, right: 60),
+              child: Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 87, 86, 83),
+                    padding: const EdgeInsets.only(
+                        top: 12, bottom: 12, left: 100, right: 100),
+                  ),
+                  onPressed: () {},
+                  child: const Text(
+                    "Submit",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
