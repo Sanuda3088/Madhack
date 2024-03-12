@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobfinder/Applicant/components/drawerview.dart';
 import 'package:jobfinder/Employer/components/recentjobposts.dart';
+import 'package:jobfinder/Employer/multistepform.dart';
 import 'package:jobfinder/globals.dart';
 
 class EmployerHomePage extends StatefulWidget {
@@ -123,44 +126,96 @@ class _EmployerHomePageState extends State<EmployerHomePage> {
                           ),
                         ],
                       ),
-                      elevatedButton(text: 'Post a Job', onPressed: () {})
+                      elevatedButton(
+                          text: 'Post a Job',
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MultiStepForm()),
+                            );
+                          })
                     ],
                   ),
                 ),
                 const Text('job post content goes here'),
-                const Column(
+                Column(
                   children: [
-                    RecentJobPosts(
-                      imagePath: 'assets/ui-ux.png',
+                    /* const RecentJobPosts(
                       jobRole: "Ui/UX",
                       address: 'Gampaha',
                       salary: '10',
                       tag: 'tag',
                     ),
-                    SizedBox(height: 10,),
-                    RecentJobPosts(
-                  imagePath: 'assets/ui-ux.png',
-                  jobRole: "Ui/UX",
-                  address: 'Gampaha',
-                  salary: '10',
-                  tag: 'tag',
-                ),
-                SizedBox(height: 10,),
-                RecentJobPosts(
-                  imagePath: 'assets/ui-ux.png',
-                  jobRole: "Ui/UX",
-                  address: 'Gampaha',
-                  salary: '10',
-                  tag: 'tag',
-                ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const RecentJobPosts(
+                      jobRole: "Ui/UX",
+                      address: 'Gampaha',
+                      salary: '10',
+                      tag: 'tag',
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const RecentJobPosts(
+                      jobRole: "Ui/UX",
+                      address: 'Gampaha',
+                      salary: '10',
+                      tag: 'tag',
+                    ),
+                    */
+                    FutureBuilder<List<QueryDocumentSnapshot>>(
+                      future: getJobPosts(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<QueryDocumentSnapshot>> snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else {
+                          return Column(
+                            children: snapshot.data!.map((doc) {
+                              return RecentJobPosts(
+                                jobRole: doc['jobposition'],
+                                address: doc['location'],
+                                salary: doc['salarymax'],
+                                tag: doc['jobType'],
+                              );
+                            }).toList(),
+                          );
+                        }
+                      },
+                    )
                   ],
                 ),
-                
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Future<List<QueryDocumentSnapshot>> getJobPosts() async {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      try {
+        QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+            .collection('Employer')
+            .doc(currentUser.uid)
+            .collection('JobPosts')
+            .get();
+        return querySnapshot.docs;
+      } catch (e) {
+        print('Error getting job posts: $e');
+        return [];
+      }
+    } else {
+      print('No current user');
+      return [];
+    }
   }
 }
