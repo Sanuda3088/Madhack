@@ -37,6 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^2.25.5
   carousel_slider: ^4.2.1
+  firebase_auth: ^4.17.8
+  google_maps_flutter: ^2.5.3
+  geolocator: ^11.0.0
+  cloud_firestore: ^4.15.8
 
 dev_dependencies:
   flutter_test:
