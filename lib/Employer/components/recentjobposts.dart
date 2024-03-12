@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RecentJobPosts extends StatelessWidget {
-  final String imagePath;
+  //final String imagePath;
   final String jobRole;
   final String address;
   final String salary;
@@ -11,7 +11,7 @@ class RecentJobPosts extends StatelessWidget {
 
   const RecentJobPosts({
     super.key,
-    required this.imagePath,
+   // required this.imagePath,
     required this.jobRole,
     required this.address,
     required this.salary,
@@ -44,7 +44,7 @@ class RecentJobPosts extends StatelessWidget {
             children: [
               InkWell(
                 child: Image.asset(
-                  imagePath,
+                  'assets/ui-ux.png',
                   width: 50,
                   height: 50,
                 ),
