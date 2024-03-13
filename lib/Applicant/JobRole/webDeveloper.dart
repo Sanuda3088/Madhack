@@ -1,38 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:jobfinder/Applicant/components/jobDescription.dart';
-// import 'package:jobfinder/Applicant/savedJobs.dart';
-
-// class WebDeveloper extends StatelessWidget {
-//   const WebDeveloper({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: JobDetails(
-//           address: "CodeX Labs - Colombo , Sri Lanka.",
-//           imagePath: "assets/ui-ux.png",
-//           jobRole: "Web Developer",
-//           salary: "8K",
-//           tag: "Full Time",
-//           aboutCompany:
-//               "Our company is a leading technology firm dedicated to revolutionizing [mention your industry or product/service]. We pride ourselves on fostering a collaborative and innovative work environment where talented individuals can thrive. Join us in shaping the future of [mention your industry or product/service] and making a meaningful impact in the digital world.",
-//           jobDescription:
-//               "We're seeking a talented and motivated web developer to join our team. As a web developer, you'll be responsible for designing, coding, and modifying websites, from layout to function, according to our company's specifications. You'll strive to create visually appealing sites that feature user-friendly design and clear navigation",
-//           requirements:
-//               "- Proficiency in HTML, CSS, and JavaScript.\n- Experience with responsive and adaptive design.\n- Understanding of server-side CSS pre-processing platforms, such as LESS and SASS.\n- Familiarity with JavaScript frameworks such as AngularJS, React, or Vue.js.\n- Knowledge of code versioning tools, such as Git.\n- Strong attention to detail and an eye for design.",
-//           responsibilities:
-//               "- Designing engaging and responsive websites.\n- Collaborating with the design team to create wireframes, prototypes, and mockups.\n- Developing and maintaining the back-end functionality of websites.\n- Ensuring cross-platform optimization for mobile devices.\n- Ensuring high performance and availability of websites.\n- Managing technical aspects of the CMS.\n- Staying updated on emerging technologies and industry trends.",
-//           iconBookmark: const Icon(
-//             Icons.bookmark,
-//           ),
-//           OnIconTap: () {
-//             Navigator.push(context,
-//                 MaterialPageRoute(builder: (context) => const SavedJobs()));
-//           }),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:jobfinder/Applicant/applyjob.dart';
 import 'package:jobfinder/Applicant/homeScreen.dart';

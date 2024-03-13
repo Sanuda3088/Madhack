@@ -102,26 +102,23 @@ class ApplyJob extends StatelessWidget {
                 borderType: BorderType.RRect,
                 padding: const EdgeInsets.only(top: 30, bottom: 30),
                 color: Colors.black,
-                child: Container(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.drive_folder_upload_sharp),
-                          color: Colors.black,
-                          iconSize: 35,
-                        ),
-                        const Text(
-                          "Upload your CV",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20,
-                          ),
-                        )
-                      ]),
-                ),
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.drive_folder_upload_sharp),
+                    color: Colors.black,
+                    iconSize: 35,
+                  ),
+                  const Text(
+                    "Upload your CV",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 20,
+                    ),
+                  )
+                ]),
               ),
             ),
             const SizedBox(
@@ -144,12 +141,12 @@ class ApplyJob extends StatelessWidget {
                 textAlignVertical: TextAlignVertical.top,
                 decoration: InputDecoration(
                     hintText: "Enter your text Here",
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       fontSize: 18,
                     ),
                     fillColor: const Color.fromARGB(255, 213, 211, 205),
                     filled: true,
-                    contentPadding: EdgeInsets.only(
+                    contentPadding: const EdgeInsets.only(
                       bottom: 200,
                     ),
                     enabledBorder: OutlineInputBorder(
@@ -160,7 +157,7 @@ class ApplyJob extends StatelessWidget {
                         ))),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 140,
             ),
             Padding(

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:carousel_slider/carousel_controller.dart';
-
-import 'package:jobfinder/Applicant/JobRole/uiDesigner.dart';
-import 'package:jobfinder/Applicant/JobRole/webDeveloper.dart';
-
 import 'package:jobfinder/Applicant/components/slider.dart';
-import 'package:jobfinder/Applicant/savedJobs.dart';
+import 'package:jobfinder/Applicant/filterpage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -94,7 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const FilterPage()));
+                      },
                       icon: const Icon(
                         Icons.filter_list_sharp,
                         size: 35,
@@ -246,7 +246,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   salary: "9K",
                   tag: "Remote",
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
@@ -263,15 +262,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                // SliderPage(
-                //     imagePath: "assets/ui-ux.png",
-                //     iconBookmark: Icon(
-                //       Icons.bookmark,
-                //     ),
-                //     jobRole: "Senior Creative Designer",
-                //     address: "CodeX Labs - Colombo , Sri Lanka.",
-                //     salary: "8K",
-                //     tag: "Full Time"),
               ],
             ),
           ],
