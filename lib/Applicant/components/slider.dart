@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jobfinder/Applicant/JobRole/uiDesigner.dart';
 import 'package:jobfinder/Applicant/JobRole/webDeveloper.dart';
 import 'package:jobfinder/Applicant/savedJobs.dart';
-import 'package:jobfinder/main.dart';
 
 class SliderPage extends StatelessWidget {
   final String imagePath;
