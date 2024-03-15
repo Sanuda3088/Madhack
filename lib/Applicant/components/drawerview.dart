@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Applicant/components/Add%20Qualifications.dart';
+import 'package:jobfinder/Applicant/components/add%20Skills.dart';
 import 'Add Eductaion.dart';
 import 'Add Work Experience.dart';
 import 'user info.dart';
@@ -54,9 +56,9 @@ class _drawermenuState extends State<drawermenu> {
             ),
             HeaderMenu(
               press: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => aboutScreen()));
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => addSkills()));
+
               },
               title: "Skill",
               buttonIcon: Icons.home_repair_service,
@@ -66,9 +68,9 @@ class _drawermenuState extends State<drawermenu> {
             ),
             HeaderMenu(
               press: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => aboutScreen()));
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => addQualification()));
+
               },
               title: "Qualifications",
               buttonIcon: Icons.cast_for_education,
