@@ -5,7 +5,6 @@ import 'package:jobfinder/Controllers/userdividingpage.dart';
 import 'package:jobfinder/Employer/homepage.dart';
 import 'package:jobfinder/Employer/loginPage.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
