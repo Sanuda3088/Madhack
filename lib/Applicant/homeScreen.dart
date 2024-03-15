@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:jobfinder/Applicant/components/slider.dart';
 import 'package:jobfinder/Applicant/filterpage.dart';
-
 import 'components/drawerview.dart';
 
 class HomeScreen extends StatefulWidget {
