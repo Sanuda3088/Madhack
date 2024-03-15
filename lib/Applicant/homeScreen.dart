@@ -50,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
         color: Colors.white,
         child: ListView(
+
           children: [
             // const Row(
             //   children: [
