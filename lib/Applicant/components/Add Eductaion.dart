@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../homeScreen.dart';
 import 'userInfo Component.dart';
 
 class addEducation extends StatefulWidget {
@@ -15,8 +18,9 @@ class _addEducationState extends State<addEducation> {
   TextEditingController startdate = TextEditingController();
   TextEditingController enddate = TextEditingController();
   TextEditingController description = TextEditingController();
-
   bool? currentJob = false;
+  final User? currentUser = FirebaseAuth.instance.currentUser;
+
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +146,7 @@ class _addEducationState extends State<addEducation> {
                       width: width,
                       child: OutlinedButton(
                         onPressed: (){
-                          print(enddate.toString());
+                          _submitSkills(context);
                         },
                         child: Text(
                           "Submit",
@@ -164,4 +168,58 @@ class _addEducationState extends State<addEducation> {
       ),
     );
   }
+  void _submitSkills(BuildContext context) {
+    if (institution.text.isNotEmpty &&
+        degree.text.isNotEmpty &&
+        startdate.text.isNotEmpty &&
+        (enddate.text.isNotEmpty || currentJob.toString().isNotEmpty) &&
+        studyArea.text.isNotEmpty &&
+        description.text.isNotEmpty) {
+      _submission(context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Please fill in all required fields"),
+      ));
+    }
+  }
+
+  void _submission(BuildContext context) async {
+    try {
+      final userInfoRef = FirebaseFirestore.instance
+          .collection('Applicant')
+          .doc(currentUser!.uid)
+          .collection('Education')
+          .doc(institution.text);
+
+      await userInfoRef.set({
+        'institution': institution.text,
+        'degree': degree.text,
+        'studyArea': studyArea.text,
+        'startDate': startdate.text,
+        'endDate': enddate.text,
+        'currentJob': currentJob.toString(),
+        'jobDescription': description.text,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Education Experience added successfully"),
+        duration: Duration(seconds: 2), // Adjust duration as needed
+      ));
+
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ApplicantHomeScreen(),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
+    }
+  }
+
 }
