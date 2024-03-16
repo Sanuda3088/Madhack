@@ -3,14 +3,14 @@ import 'package:jobfinder/Applicant/components/slider.dart';
 import 'package:jobfinder/Applicant/filterpage.dart';
 import 'components/drawerview.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ApplicantHomeScreen extends StatefulWidget {
+  const ApplicantHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ApplicantHomeScreen> createState() => _ApplicantHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ApplicantHomeScreenState extends State<ApplicantHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

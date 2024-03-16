@@ -31,7 +31,7 @@ class ApplyJob extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
+                            builder: (context) => const ApplicantHomeScreen()));
                   },
                   icon: const Icon(
                     Icons.keyboard_backspace,

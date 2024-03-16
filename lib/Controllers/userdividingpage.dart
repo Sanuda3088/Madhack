@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Applicant/ApplicantLoginPage.dart';
 import 'package:jobfinder/Applicant/homeScreen.dart';
 import 'package:jobfinder/Employer/homepage.dart';
 import 'package:jobfinder/Employer/loginPage.dart';
@@ -20,7 +21,7 @@ class UserDividingPage extends StatelessWidget {
             elevatedButton(text: 'Applicant', onPressed:(){
               Navigator.push(
                 context, 
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+                MaterialPageRoute(builder: (context) => APLoginPage()));
             } ),
             elevatedButton(
                 text: 'Employer',

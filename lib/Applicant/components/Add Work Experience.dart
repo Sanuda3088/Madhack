@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
+import '../homeScreen.dart';
 import 'userInfo Component.dart';
 
 class addWorkExperience extends StatefulWidget {
@@ -12,16 +15,12 @@ class addWorkExperience extends StatefulWidget {
 
 class _addWorkExperienceState extends State<addWorkExperience> {
   TextEditingController jobName = TextEditingController();
-
   TextEditingController company = TextEditingController();
-
   TextEditingController startdate = TextEditingController();
-
   TextEditingController enddate = TextEditingController();
-
   TextEditingController description = TextEditingController();
-
   bool? currentJob = false;
+  final User? currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +145,7 @@ class _addWorkExperienceState extends State<addWorkExperience> {
                       width: width,
                       child: OutlinedButton(
                         onPressed: (){
-                          print(enddate.toString());
+                          _submitWorkExperience(context);
                         },
                         child: Text(
                           "Submit",
@@ -168,4 +167,56 @@ class _addWorkExperienceState extends State<addWorkExperience> {
       ),
     );
   }
+  void _submitWorkExperience(BuildContext context) {
+    if (jobName.text.isNotEmpty &&
+        company.text.isNotEmpty &&
+        startdate.text.isNotEmpty &&
+        (enddate.text.isNotEmpty || currentJob.toString().isNotEmpty) &&
+        description.text.isNotEmpty) {
+      _submission(context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Please fill in all required fields"),
+      ));
+    }
+  }
+
+  void _submission(BuildContext context) async {
+    try {
+      final userInfoRef = FirebaseFirestore.instance
+          .collection('Applicant')
+          .doc(currentUser!.uid)
+          .collection('Work Experience')
+          .doc(jobName.text);
+
+        await userInfoRef.set({
+          'jobName': jobName.text,
+          'company': company.text,
+          'startDate': startdate.text,
+          'endDate': enddate.text,
+          'currentJob': currentJob.toString(),
+          'jobDescription': description.text,
+          'timestamp': FieldValue.serverTimestamp(),
+        });
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Work Experience added successfully"),
+          duration: Duration(seconds: 2), // Adjust duration as needed
+        ));
+
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ApplicantHomeScreen(),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
+    }
+  }
+
 }
