@@ -1,4 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jobfinder/Applicant/components/Add%20Qualifications.dart';
+import 'package:jobfinder/Applicant/components/add%20Skills.dart';
+import 'package:jobfinder/Applicant/homeScreen.dart';
+import 'package:jobfinder/Controllers/userdividingpage.dart';
 import 'Add Eductaion.dart';
 import 'Add Work Experience.dart';
 import 'user info.dart';
@@ -54,9 +59,9 @@ class _drawermenuState extends State<drawermenu> {
             ),
             HeaderMenu(
               press: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => aboutScreen()));
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => addSkills()));
+
               },
               title: "Skill",
               buttonIcon: Icons.home_repair_service,
@@ -66,9 +71,9 @@ class _drawermenuState extends State<drawermenu> {
             ),
             HeaderMenu(
               press: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => aboutScreen()));
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => addQualification()));
+
               },
               title: "Qualifications",
               buttonIcon: Icons.cast_for_education,
@@ -77,8 +82,18 @@ class _drawermenuState extends State<drawermenu> {
               height: height/50,
             ),
             HeaderMenu(
-              press: () {
-                Navigator.pop(context);
+              press: () async {
+                try {
+                  await FirebaseAuth.instance.signOut();
+                  // Navigate to your login or welcome screen
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserDividingPage()), // Navigate to your home screen
+                        (route) => false, // Pop all routes except the home screen
+                  );
+                } catch (e) {
+                  print("Error signing out: $e");
+                }
               },
               title: "LogoOut",
               buttonIcon: Icons.logout,
