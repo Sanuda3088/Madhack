@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobfinder/Applicant/components/drawerview.dart';
+import 'package:jobfinder/Controllers/userdividingpage.dart';
 import 'package:jobfinder/Employer/components/recentjobposts.dart';
 import 'package:jobfinder/Employer/multistepform.dart';
 import 'package:jobfinder/globals.dart';
@@ -14,6 +15,7 @@ class EmployerHomePage extends StatefulWidget {
 }
 
 class _EmployerHomePageState extends State<EmployerHomePage> {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final TextEditingController _searchController = TextEditingController();
   late double width;
   late double height;
@@ -41,10 +43,10 @@ class _EmployerHomePageState extends State<EmployerHomePage> {
       ),
       drawer: Drawer(
         child: ListView(
-          children: const <Widget>[
-            DrawerHeader(
+          children: <Widget>[
+            const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color.fromARGB(255, 17, 24, 119),
               ),
               child: Text(
                 'Employer',
@@ -55,20 +57,37 @@ class _EmployerHomePageState extends State<EmployerHomePage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const EmployerHomePage(),
+                  ),
+                );
+              },
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.person),
               title: Text('Profile'),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: () {
+                signOut();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const UserDividingPage(),
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -217,5 +236,9 @@ class _EmployerHomePageState extends State<EmployerHomePage> {
       print('No current user');
       return [];
     }
+  }
+
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
   }
 }
