@@ -5,6 +5,8 @@ import 'package:jobfinder/Employer/homepage.dart';
 import 'package:jobfinder/Employer/loginPage.dart';
 import 'package:jobfinder/globals.dart';
 
+import '../Applicant/homeScreen.dart';
+
 class UserDividingPage extends StatelessWidget {
   const UserDividingPage({super.key});
 

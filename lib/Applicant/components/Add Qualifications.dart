@@ -1,8 +1,13 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../homeScreen.dart';
+
+import 'package:flutter/material.dart';
+
+
 import 'userInfo Component.dart';
 
 class addQualification extends StatefulWidget {
@@ -17,6 +22,7 @@ class _addQualificationState extends State<addQualification> {
   TextEditingController date = TextEditingController();
   TextEditingController description = TextEditingController();
   final User? currentUser = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -61,7 +67,9 @@ class _addQualificationState extends State<addQualification> {
                     width: width,
                     child: OutlinedButton(
                       onPressed: (){
+
                         _submitQualification(context);
+
                       },
                       child: Text(
                         "Submit",
@@ -81,6 +89,7 @@ class _addQualificationState extends State<addQualification> {
       ),
     );
   }
+
 
   void _submitQualification(BuildContext context) {
     if (qualification.text.isNotEmpty &&

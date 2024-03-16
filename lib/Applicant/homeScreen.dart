@@ -51,6 +51,7 @@ class _ApplicantHomeScreenState extends State<ApplicantHomeScreen> {
         ),
         color: Colors.white,
         child: ListView(
+
           children: [
             // const Row(
             //   children: [
