@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobfinder/Applicant/components/slider.dart';
 import 'package:jobfinder/Applicant/filterpage.dart';
@@ -20,12 +21,8 @@ class _ApplicantHomeScreenState extends State<ApplicantHomeScreen> {
           padding: EdgeInsets.zero,
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Shanka Visal Amarasekara"),
-              accountEmail: Text("shankavisal@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://lh3.googleusercontent.com/a/ACg8ocJ13rhrBpbk1rPNom7VDhUg-8I_SUTQ2UtTGhomswUHG-U=s360-c-no"),
-              ),
+              accountName: Text("Welcome"),
+              accountEmail: Text(FirebaseAuth.instance.currentUser?.email ?? 'Default Email'),
               decoration: BoxDecoration(
                   color: Colors.blueGrey
               ),
